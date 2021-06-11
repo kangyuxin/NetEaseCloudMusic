@@ -33,3 +33,44 @@
 .navItem text {
   font-size: 26rpx;
 }
+
+/* <!-- 推荐歌曲区域 -->  */
+.recommendContainer {
+  padding: 20rpx;
+}
+.recommendContainer .header .title {
+  font-size: 32rpx;
+  line-height: 80rpx;
+  color: #666;
+}
+.recommendContainer .header .more {
+  float: right;
+  border: 1rpx solid #333;
+  padding: 10rpx 20rpx;
+  font-size: 24rpx;
+  border-radius: 30rpx;
+}
+
+/* <!-- 内容区域 --> */
+.recommendScrollView {
+  padding-top: 20rpx;
+  display: flex;
+}
+.scrollItem {
+  width: 200rpx;
+  margin-right: 20rpx;
+}
+.scrollItem image {
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 10rpx;
+}
+.scrollItem text {
+  font-size: 26rpx;
+
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
