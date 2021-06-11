@@ -7,7 +7,8 @@ Page({
    */
   data: {
     bannerList: [],
-    recommendMusicList: []
+    recommendMusicList: [],
+    topList: []
   },
 
   /**
@@ -15,13 +16,27 @@ Page({
    */
   onLoad: async function (options) {
     const bannerListData = await request('/banner', {type: 2})
-    const recommendMusicList = await request('/personalized', {limit: 10})
     this.setData({
-      bannerList: bannerListData.banners,
-      recommendMusicList: recommendMusicList.result
+      bannerList: bannerListData.banners
     })
 
+    const recommendMusicListData = await request('/personalized', {limit: 10})
+    this.setData({
+      recommendMusicList: recommendMusicListData.result
+    })
 
+    let count = 0, resultArr = []
+    while (count < 5) {
+      let topListData = await request('/top/list', {idx: count++})
+      let topListItem = {
+        name: topListData.playlist.name,
+        tracks: topListData.playlist.tracks.slice(0, 3)
+      }
+      resultArr.push(topListItem)
+      this.setData({
+        topList: resultArr
+      })
+    }
   },
 
   /**

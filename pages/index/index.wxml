@@ -1,12 +1,7 @@
-<!--pages/index/index.wxml-->
+<!-- pages/index/index.wxml -->
 <view class="container">
   <!-- 轮播图 -->
-  <swiper class="banners"
-          autoplay
-          interval="2000"
-          indicator-dots="true"
-          indicator-color="ivory"
-          indicator-active-color="#d43c33">
+  <swiper class="banners" autoplay interval="2000" indicator-dots="true" indicator-color="ivory" indicator-active-color="#d43c33">
     <swiper-item wx:for="{{bannerList}}" wx:key="bannerId">
       <image src="{{item.pic}}"></image>
     </swiper-item>
@@ -35,20 +30,26 @@
     </view>
   </view>
   <!-- 推荐歌曲区域 -->
-  <view class="recommendContainer">
-    <view class="header">
-      <text class="title">推荐歌曲</text>
-      <view>
-        <text>为你精心推荐</text>
-        <text class="more">查看更多</text>
-      </view>
-    </view>
-  </view>
+  <NavHeader title="推荐歌曲" nav="为你精心推荐"></NavHeader>
   <!-- 推荐内容区域 -->
   <scroll-view class="recommendScrollView" enable-flex scroll-x="{{true}}">
     <view class="scrollItem" wx:for="{{recommendMusicList}}" wx:key="id" wx:for-item="recommendItem">
-      <image src="{{recommendItem.picUrl}}"/>
+      <image src="{{recommendItem.picUrl}}" />
       <text>{{recommendItem.name}}</text>
     </view>
   </scroll-view>
+  <!-- 排行版区域 -->
+  <view class="topList">
+    <NavHeader title="排行榜" nav="热歌风向标"></NavHeader>
+    <swiper class="topListSwiper" autoplay interval="4000" next-margin="50rpx">
+      <swiper-item wx:for="{{topList}}" wx:key="name">
+        <view class="title">{{item.name}}</view>
+        <view class="musicItem" wx:for="{{item.tracks}}" wx:key="id" wx:for-item="musicItem">
+          <image src="{{musicItem.al.picUrl}}" />
+          <text class="count">{{index + 1}}</text>
+          <text class="musicName">{{musicItem.name}}</text>
+        </view>
+      </swiper-item>
+    </swiper>
+  </view>
 </view>
