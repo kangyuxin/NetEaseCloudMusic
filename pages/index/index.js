@@ -6,15 +6,22 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    bannerList: [],
+    recommendMusicList: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: async function (options) {
-    let result = await request('/banner', {type: 2})
-    console.log(result)
+    const bannerListData = await request('/banner', {type: 2})
+    const recommendMusicList = await request('/personalized', {limit: 10})
+    this.setData({
+      bannerList: bannerListData.banners,
+      recommendMusicList: recommendMusicList.result
+    })
+
+
   },
 
   /**
