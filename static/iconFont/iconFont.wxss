@@ -1,39 +1,62 @@
 @font-face {
-    font-family: "iconfont"; /* Project id 2607466 */
-    src: url('//at.alicdn.com/t/font_2607466_u3z4eokfdo.woff2?t=1623394087222') format('woff2'),
-         url('//at.alicdn.com/t/font_2607466_u3z4eokfdo.woff?t=1623394087222') format('woff'),
-         url('//at.alicdn.com/t/font_2607466_u3z4eokfdo.ttf?t=1623394087222') format('truetype');
-  }
-  
-  .iconfont {
-    font-family: "iconfont" !important;
-    font-size: 16px;
-    font-style: normal;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-  
-  .icon-paihangbang:before {
-    content: "\e782";
-  }
-  
-  .icon-gedan:before {
-    content: "\e636";
-  }
-  
-  .icon-zhibo:before {
-    content: "\e74f";
-  }
-  
-  .icon-gedan1:before {
-    content: "\e600";
-  }
-  
-  .icon-tuijian:before {
-    content: "\e629";
-  }
-  
-  .icon-diantai:before {
-    content: "\e693";
-  }
-  
+  font-family: "iconfont"; /* Project id 2607466 */
+  src: url('//at.alicdn.com/t/font_2607466_oqe06rgcq.woff2?t=1623503567244') format('woff2'),
+       url('//at.alicdn.com/t/font_2607466_oqe06rgcq.woff?t=1623503567244') format('woff'),
+       url('//at.alicdn.com/t/font_2607466_oqe06rgcq.ttf?t=1623503567244') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-video:before {
+  content: "\e601";
+}
+
+.icon-yifu:before {
+  content: "\e666";
+}
+
+.icon-xiaoxi:before {
+  content: "\e75b";
+}
+
+.icon-gexingzhuangban:before {
+  content: "\e655";
+}
+
+.icon-gerenzhuye:before {
+  content: "\e621";
+}
+
+.icon-haoyou:before {
+  content: "\e628";
+}
+
+.icon-paihangbang:before {
+  content: "\e782";
+}
+
+.icon-gedan:before {
+  content: "\e636";
+}
+
+.icon-zhibo:before {
+  content: "\e74f";
+}
+
+.icon-gedan1:before {
+  content: "\e600";
+}
+
+.icon-tuijian:before {
+  content: "\e629";
+}
+
+.icon-diantai:before {
+  content: "\e693";
+}
