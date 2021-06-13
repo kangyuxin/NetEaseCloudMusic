@@ -3,6 +3,8 @@ let startY = 0 // 手指起始的坐标
 let moveY = 0 // 手指移动的坐标
 let moveDistance = 0 // 手指移动的距离
 
+import request from '../../utils/request'
+
 Page({
 
   /**
@@ -11,7 +13,8 @@ Page({
   data: {
     coverTransform: 'translateY(0)',
     coverTransition: '',
-    userInfo: {}
+    userInfo: {},
+    recentPlayList: []
   },
 
   /**
@@ -23,7 +26,21 @@ Page({
       this.setData({
         userInfo: JSON.parse(userInfo)
       })
+
+      this.getUserRecentPlayList(this.data.userInfo.userId)
     }
+  },
+
+  async getUserRecentPlayList (userId) {
+    let recentPlayListData = await request('/user/record', {uid: userId, type: 0})
+    let index = 0
+    let recentPlayList = recentPlayListData.allData.slice(0, 10).map(item => {
+      item.id = index++
+      return item
+    })
+    this.setData({
+      recentPlayList
+    })
   },
 
   handleTouchStart (event) {
