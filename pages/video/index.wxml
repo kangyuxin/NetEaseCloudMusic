@@ -6,17 +6,49 @@
         <image src="/static/images/logo.png" />
     </view>
 
-    <scroll-view scroll-x enable-flex class="navScroll">
-        <view class="navItem" wx:for="{{videoGroupList}}" wx:key="id">
+    <scroll-view 
+        scroll-x 
+        enable-flex 
+        class="navScroll" 
+        scroll-into-view="{{'scroll' + navId}}"
+        scroll-with-animation="{{true}}"
+    >
+        <view class="navItem" wx:for="{{videoGroupList}}" wx:key="id" id="{{'scroll' + item.id}}">
             <view class="navContent {{navId == item.id?'active':''}}" bindtap="changeNav" id="{{item.id}}">
                 {{item.name}}
             </view>
         </view>
     </scroll-view>
 
-    <scroll-view scroll-y class="videoScroll">
+    <scroll-view 
+        scroll-y 
+        class="videoScroll"
+        refresher-enabled
+        bindrefresherrefresh="handleRefresh"
+        refresher-triggered="{{isTriggered}}"
+        bindscrolltolower="handleToLower"
+    >
         <view class="videoItem" wx:for="{{videoList}}" wx:key="id">
-            <video src="{{item.data.urlInfo.url}}" />
+            <video 
+                id="{{item.data.vid}}"
+                src="{{item.data.urlInfo.url}}"
+                bindplay="handlePlay"
+                poster="{{item.data.coverUrl}}"
+                class="common"
+                wx:if="{{videoId === item.data.vid}}"
+                object-fit="cover"
+                bindtimeupdate="handleTimeUpdate"
+                bindended="handleEnded"
+            />
+
+            <image 
+                id="{{item.data.vid}}"
+                class="common" 
+                src="{{item.data.coverUrl}}" 
+                bindtap="handlePlay"
+                wx:else
+            />
+
             <view class="content">{{item.data.title}}</view>
             <view class="footer">
                 <image class="avatar" src="{{item.data.creator.avatarUrl}}"></image>
@@ -31,7 +63,7 @@
                         <text class="count">{{item.data.commentCount}}</text>
                     </text>
                     <button open-type="share" class="item btn">
-                        <text class="iconfont icon-dashujukeshihuaico-"></text>
+                        <text class="iconfont icon-fenxiang-"></text>
                     </button>
                 </view>
             </view>

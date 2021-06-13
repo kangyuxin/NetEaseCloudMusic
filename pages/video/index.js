@@ -8,7 +8,10 @@ Page({
   data: {
     videoGroupList: [],
     navId: '',
-    videoList: []
+    videoList: [],
+    videoId: '',
+    videoUpdateTime: [],
+    isTriggered: false
   },
 
   /**
@@ -29,23 +32,87 @@ Page({
 
   async getVideoList (navId) {
     const videoListData = await request('/video/group', {id: navId})
+
+    wx.hideLoading({
+      complete: (res) => {},
+    })
+
     let index = 0
     let videoList = videoListData.datas.map(item => {
       item.id = index++
       return item
     })
     this.setData({
-      videoList
+      videoList,
+      isTriggered: false
     })
   },
 
   changeNav (event) {
     let navId = event.currentTarget.id
     this.setData({
-      navId
+      navId,
+      videoList: []
+    })
+
+    wx.showLoading({
+      title: '正在加载',
     })
 
     this.getVideoList(this.data.navId)
+  },
+
+  handlePlay (event) {
+    let vid = event.currentTarget.id
+    // this.vid !== vid && this.videoContext && this.videoContext.stop()
+
+    // this.vid = vid
+    this.setData({
+      videoId: vid
+    })
+    this.videoContext = wx.createVideoContext(vid)
+    let {videoUpdateTime} = this.data
+    let videoItem = videoUpdateTime.find(item => item.vid === vid)
+    if (videoItem) {
+      this.videoContext.seek(videoItem.currentTime)
+    }
+    this.videoContext.play()
+  },
+
+  // 监听视频播放进度
+  handleTimeUpdate (event) {
+    let videoTimeObj = {
+      vid: event.currentTarget.id,
+      currentTime: event.detail.currentTime
+    }
+    let {videoUpdateTime} = this.data
+    let videoItem = videoUpdateTime.find(item => item.vid === videoTimeObj.vid)
+    if (videoItem) {
+      videoItem.currentTime = event.detail.currentTime
+    } else {
+      videoUpdateTime.push(videoTimeObj)
+    }
+    this.setData({
+      videoUpdateTime
+    })
+  },
+
+  handleEnded (event) {
+    let {videoUpdateTime} = this.data
+    videoUpdateTime.splice(videoUpdateTime.findIndex(item => item.vid === event.currentTarget.id), 1)
+    this.setData({
+      videoUpdateTime
+    })
+  },
+
+  // 下拉刷新
+  handleRefresh () {
+    this.getVideoList(this.data.navId)
+  },
+
+  handleToLower () {
+    // 分页
+    console.log("发送请求")
   },
 
   /**
@@ -94,6 +161,6 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    
   }
 })
