@@ -29,6 +29,12 @@
           "pathName": "pages/video/index",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "recommendSong",
+          "pathName": "pages/recommendSong/index",
+          "query": "",
+          "scene": null
         }
       ]
     }
