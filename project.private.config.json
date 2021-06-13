@@ -23,6 +23,12 @@
           "pathName": "pages/login/index",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "video",
+          "pathName": "pages/video/index",
+          "query": "",
+          "scene": null
         }
       ]
     }

@@ -1,2 +1,40 @@
 <!--pages/video/index.wxml-->
-<text>pages/video/index.wxml</text>
+<view class="videoContainer">
+    <view class="header">
+        <image src="/static/images/video/video.jpg" />
+        <view class="search">搜索音乐</view>
+        <image src="/static/images/logo.png" />
+    </view>
+
+    <scroll-view scroll-x enable-flex class="navScroll">
+        <view class="navItem" wx:for="{{videoGroupList}}" wx:key="id">
+            <view class="navContent {{navId == item.id?'active':''}}" bindtap="changeNav" id="{{item.id}}">
+                {{item.name}}
+            </view>
+        </view>
+    </scroll-view>
+
+    <scroll-view scroll-y class="videoScroll">
+        <view class="videoItem" wx:for="{{videoList}}" wx:key="id">
+            <video src="{{item.data.urlInfo.url}}" />
+            <view class="content">{{item.data.title}}</view>
+            <view class="footer">
+                <image class="avatar" src="{{item.data.creator.avatarUrl}}"></image>
+                <text class="nickName">{{item.data.creator.nickname}}</text>
+                <view class="comments_praised">
+                    <text class="item">
+                        <text class="iconfont icon-aixin"></text>
+                        <text class="count">{{item.data.praisedCount}}</text>
+                    </text>
+                    <text class="item">
+                        <text class="iconfont icon-icon-"></text>
+                        <text class="count">{{item.data.commentCount}}</text>
+                    </text>
+                    <button open-type="share" class="item btn">
+                        <text class="iconfont icon-dashujukeshihuaico-"></text>
+                    </button>
+                </view>
+            </view>
+        </view>
+    </scroll-view>
+</view>

@@ -50,7 +50,7 @@ Page({
       return
     }
 
-    let result = await request('/login/cellphone', {phone, password})
+    let result = await request('/login/cellphone', {phone, password, isLogin: true})
     console.log(result)
     if (result.code === 200) {
       wx.showToast({
