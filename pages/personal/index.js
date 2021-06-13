@@ -10,14 +10,20 @@ Page({
    */
   data: {
     coverTransform: 'translateY(0)',
-    coverTransition: ''
+    coverTransition: '',
+    userInfo: {}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    let userInfo = wx.getStorageSync('userInfo')
+    if (userInfo) {
+      this.setData({
+        userInfo: JSON.parse(userInfo)
+      })
+    }
   },
 
   handleTouchStart (event) {
@@ -46,6 +52,12 @@ Page({
     this.setData({
       coverTransform: `translateY(0rpx)`,
       coverTransition: 'transform 1s linear'
+    })
+  },
+
+  toLogin () {
+    wx.navigateTo({
+      url: '/pages/login/index',
     })
   },
 

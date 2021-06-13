@@ -2,7 +2,8 @@
   "pages": [
     "pages/index/index",
     "pages/personal/index",
-    "pages/video/index"
+    "pages/video/index",
+    "pages/login/index"
   ],
   "window": {
     "navigationBarBackgroundColor": "#d43c33",
@@ -12,7 +13,8 @@
   "style": "v2",
   "sitemapLocation": "sitemap.json",
   "tabBar": {
-    "list": [{
+    "list": [
+      {
         "pagePath": "pages/index/index",
         "text": "主页",
         "iconPath": "./static/images/tabs/tab-home.png",
