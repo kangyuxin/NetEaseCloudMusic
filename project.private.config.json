@@ -35,6 +35,12 @@
           "pathName": "pages/recommendSong/index",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "songDetail",
+          "pathName": "pages/songDetail/index",
+          "query": "",
+          "scene": null
         }
       ]
     }

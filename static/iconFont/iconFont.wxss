@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 2607466 */
-  src: url('//at.alicdn.com/t/font_2607466_o63pt54ssj.woff2?t=1623591991694') format('woff2'),
-       url('//at.alicdn.com/t/font_2607466_o63pt54ssj.woff?t=1623591991694') format('woff'),
-       url('//at.alicdn.com/t/font_2607466_o63pt54ssj.ttf?t=1623591991694') format('truetype');
+  src: url('//at.alicdn.com/t/font_2607466_be4nb2ueeb8.woff2?t=1623639050290') format('woff2'),
+       url('//at.alicdn.com/t/font_2607466_be4nb2ueeb8.woff?t=1623639050290') format('woff'),
+       url('//at.alicdn.com/t/font_2607466_be4nb2ueeb8.ttf?t=1623639050290') format('truetype');
 }
 
 .iconfont {
@@ -11,6 +11,26 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-bofang:before {
+  content: "\e662";
+}
+
+.icon-48shangyishou:before {
+  content: "\e610";
+}
+
+.icon-048caozuo_xiayishou:before {
+  content: "\e624";
+}
+
+.icon-icon_bofang:before {
+  content: "\e615";
+}
+
+.icon-suijibofang:before {
+  content: "\e6a0";
 }
 
 .icon-fenxiang-:before {

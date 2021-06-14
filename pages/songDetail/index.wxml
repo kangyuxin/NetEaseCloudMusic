@@ -1,0 +1,19 @@
+<!--pages/songDetail/index.wxml-->
+<view class="songDetailContainer">
+    <view class="author">{{song.ar[0].name}}</view>
+    <view class="circle"></view>
+    <image class="needle {{isPlay && 'needleRotate'}}" src="/static/images/song/needle.png" />
+
+    <view class="discContainer {{isPlay && 'discAnimation'}}">
+        <image class="disc" src="/static/images/song/disc.png" />
+        <image class="musicImg" src="{{song.al.picUrl}}" />
+    </view>
+
+    <view class="musicControl">
+        <text class="iconfont icon-suijibofang"></text>
+        <text class="iconfont icon-48shangyishou" id="pre" bindtap="handleSwitch"></text>
+        <text class="iconfont {{isPlay?'icon-icon_bofang':'icon-bofang'}} big" bindtap="handleMusicPlay"></text>
+        <text class="iconfont icon-048caozuo_xiayishou" id="next" bindtap="handleSwitch"></text>
+        <text class="iconfont icon-gedan"></text>
+    </view>
+</view>
