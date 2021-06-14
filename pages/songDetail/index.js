@@ -1,6 +1,7 @@
 // pages/songDetail/index.js
 import request from '../../utils/request'
 import PubSub from 'pubsub-js'
+import moment from 'moment'
 const appInstance = getApp()
 Page({
 
@@ -11,7 +12,10 @@ Page({
     isPlay: false,
     song: {},
     musicId: '',
-    musicLink: ''
+    musicLink: '',
+    currentTime: '00:00',
+    durationTime: '00:00',
+    liveBarWidth: 0
   },
 
   /**
@@ -44,6 +48,23 @@ Page({
     this.backgroundAudioManager.onStop(() => {
       this.changePlayState(false)
     })
+    this.backgroundAudioManager.onEnded(() => {
+      PubSub.publish('switchType', 'next')
+      this.setData({
+        liveBarWidth: 0,
+        currentTime: '00:00',
+      })
+    })
+
+    // 监听音乐实时播放进度
+    this.backgroundAudioManager.onTimeUpdate(() => {
+      let currentTime = moment(this.backgroundAudioManager.currentTime * 1000).format('mm:ss')
+      let currentWidth = this.backgroundAudioManager.currentTime / this.backgroundAudioManager.duration * 450
+      this.setData({
+        currentTime,
+        liveBarWidth: currentWidth
+      })
+    })
   },
 
   changePlayState (isPlay) {
@@ -56,8 +77,10 @@ Page({
 
   async getMusicInfo (musicId) {
       let songData = await request('/song/detail', {ids: musicId})
+      let durationTime = moment(songData.songs[0].dt).format('mm:ss')
       this.setData({
-        song: songData.songs[0]
+        song: songData.songs[0],
+        durationTime
       })
       wx.setNavigationBarTitle({
         title: this.data.song.name,
